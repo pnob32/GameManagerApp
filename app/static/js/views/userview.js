@@ -8,7 +8,7 @@ define([
   'models/usermodel',
   'collections/usercollection',
   // template import
-  'text!../templates/userlist.html'
+  'text!./../../templates/userlist.html'
 ], function($, _, Backbone, User, Users, userlistTemplate){
   
   var EditUserView = Backbone.View.extend({
@@ -47,7 +47,11 @@ define([
     render: function (options) {
       console.log("rendering edit user view");
       var that = this;
+      this.$el.children().detach();
       if (options.id) {
+        
+        console.log("in userEdit render func: user has id");
+
          // GET details
          that.user = new User({id: options.id});
          that.user.fetch({
@@ -59,9 +63,12 @@ define([
           }
          })
       } else {
+        user = new User();
+        
         console.log("in userEdit render func: user null");
-        var userObj = {user: null};
-        var compiledTemplate = _.template(userlistTemplate, userObj);
+
+        var compiledTemplate = _.template(userlistTemplate);
+        compiledTemplate({user: user});// userObj);
         this.$el.append(compiledTemplate);
         //this.$el.html(this.template(userObj));
       }
