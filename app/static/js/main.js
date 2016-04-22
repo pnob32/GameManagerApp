@@ -9,14 +9,16 @@ require.config({
     jquery: 'libs/jquery/jquery',
     bootstrap: 'libs/bootstrap/bootstrap',
     underscore: 'libs/underscore/underscore',
-    backbone: 'libs/backbone/backbone'
+    backbone: 'libs/backbone/backbone',
+    userutils: 'util/userutils',
   }
 });
 
 require([
   'jquery',
   'app',
-  'bootstrap'
+  'bootstrap',
+  
 ], function($, App) {
   // DOM ready...
   $(function() {

@@ -8,6 +8,32 @@
 	padding-left: 20px;
 }
 
+.login-state > .login-state-link {
+  visibility: hidden;
+}
+
+.login-view-button {
+  float: left;
+  padding: 15px;
+  width: 20%;
+}
+
+.creation-view-button {
+  float: left;
+  padding: 15px;
+  width: 15%;
+}
+
+.login-alert {
+  width: 50%;
+  float: left;
+  margin-left: 20px;
+}
+
+.login-alert > div {
+  text-align: center;
+}
+
 .game-pill {
 	font-size: 30px;
 }

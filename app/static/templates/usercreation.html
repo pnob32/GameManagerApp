@@ -1,0 +1,33 @@
+<form class="navbar-form nav-stacked edit-user-form">
+  <legend><%= user.id ? 'Edit' : 'New' %> Account</legend>
+  <label class="form-label">First Name</label>
+  <!--<input required=true id="usr-fname" class="form-input" type="text" name="firstname" value="<% user ? user.get('firstname') : 'hello world!' %>" /> -->
+  
+  <input required=true id="usr-fname" class="form-input" type="text" name="firstname" value="<%= user.id ? 'RAWR' : 'hello world!' %>" /> 
+  <hr />
+  <label class="form-label">Last Name</label>
+  <input required=true id="usr-lname" class="form-input" type="text" name="lastname" value="<%= user ? user.get('lastname') : null %>" /> 
+  <hr />
+  <label class="form-label">Age</label>
+  <input id="usr-age" class="form-input" type="text" name="age" value="<%= user ? user.get('age') : null %>" /> 
+  <hr />
+  <label class="form-label">Email Address</label>
+  <input id="usr-email" class="form-input" type="text" name="email" value="<%= user ? user.get('email') : null %>" required/>
+  <hr />
+	<div class="container">
+    <div id="usercreation-error-msg"></div>
+	  <button type="submit" class="btn login-view-button" id="usr-submit"><%= user.id ? 'Update' : 'Create' %> User</button>
+	  <% if (user.id) { %>
+	    <input type="hidden" name="id" value="<%= user.id %>" />
+	    <button data-user-id="<%= user.id %>" class="btn btn-danger delete login-view-button">Delete</button>
+    <% console.log(user);} else {%>
+    
+    <div class="alert alert-info login-alert" role="alert">
+      <div>
+        Already have an account!?
+        <a href="#/login" class="alert-link"> Login! </a>
+      </div>
+    </div>
+    <% }; %>
+  </div>
+</form>

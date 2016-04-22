@@ -8,30 +8,31 @@ app = Flask(__name__, static_url_path='')
 #api = restful.Api(app)
 
 users = [
-    {
-        'firstname': u'Patrick',
-        'lastname': u'Noble',
-        'age': 24, 
-        'id': u'2u3uh4iu3h343iu4h',
-    },
-    {
-        'firstname': u'Robyn',
-        'lastname': u'Cromwell',
-        'age': 28,
-        'id': u'2iuh3i3u2h3i2u3h2iu3',
-    }
+    #{
+     #   'firstname': 0,
+     #   'lastname': 0,
+     #   'age': 0, 
+     #   'id': 0,
+    #}
 ]
 
 @app.after_request
 def after_request(response):
+    print "sending headers"
     response.headers.add('Acess-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
+
+# Handle http requests
+# PUT - add new resource
+# POST - update resource
+    
 @app.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     b = 'user not found'
+    print 'getting user: ' + user_id
     for cur in users:
         if cur['id'] == user_id:
             b = json.dumps(cur)
@@ -48,16 +49,23 @@ def put_user(user_id):
 
 @app.route('/users', methods=['GET'])
 def get_users():
+    print request;
+    print request.json;
     return json.dumps(users)
 
 @app.route('/users', methods=['POST'])
 def post_users():
-    users.append(request.json)
+    print request.json
+    
+    userdata = request.json
+    
+    # check for duplicate email
+    for user in users:
+      if (user['email'] == userdata['email']):
+        return 'exists'
+    
+    users.append(userdata)
     return json.dumps(users)
-
-@app.route('/helloworld', methods=['GET'])
-def helloWorld():
-    return 'Hello World'
 
 @app.route('/', methods=['GET'])
 def root():

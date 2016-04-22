@@ -14,30 +14,42 @@ define([
       'edit': 'editUser',
       'create-account': 'createUser',
       'login': 'userLogin',
+      //'login/:email': 'authentication',
+      //'logout': 'userLogout',
       // Default
       '*actions': 'defaultAction'
     }
   });
   
+  var router = new Router()
+  
   var initialize = function() {
+    
+    editUserView.setRouter(router);
+    
     console.log("creating routes");
-    var router = new Router;
     router.on('route:home', function() {
-      console.log('home page');
+      editUserView.unRender();
     });
     router.on('route:editUser', function() {
       console.log("edit user");
-      editUserView.render({id: null});
+      editUserView.renderEdit({id: null});
     });
     router.on('route:createUser', function () {
       console.log("create user");
-      editUserView.render({id: null});
+      editUserView.renderEdit({id: null});
       //editUser.render({id: id});
     });
     router.on('route:userLogin', function () {
-      editUserView.render({id: null});
-      //editUser.render({id: id});
+      editUserView.renderLogin();
     });
+    /*router.on('route:authentication', function (email) {
+      console.log("authenticating user: " + email);
+      editUserView.authenticateUser({email: email});
+    });*/
+    /*router.on('route:userLogout', function () {
+      editUserView.logout();
+    });*/
     router.on('route:defaultAction', function(actions) {
       console.log('No route:', actions);
     });
@@ -48,6 +60,7 @@ define([
   };
   
   return {
-    initialize: initialize
+    initialize: initialize,
+		router: router
   };
 });

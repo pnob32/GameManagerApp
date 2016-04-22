@@ -46,14 +46,14 @@
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#">Logout</a></li>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+	          <a href="#" id="account-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Login</a></li>
-	            <li><a href="#/edit">Edit Account</a></li>
+	            <li id="user-login-navlink"><a href="#/login">Login</a></li>
+	            <li hidden id="user-edit-navlink"><a href="#/edit">Edit Account</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#/create-account">Create Account</a></li>
+	            <li id="user-creation-navlink"><a href="#/create-account">Create Account</a></li>
+              <li hidden id="user-logout-navlink" class="login-state-link"><a href="#">Logout</a></li>
 	          </ul>
 	        </li>
 	      </ul>
@@ -85,11 +85,12 @@
 
 		<!-- Right Margin -->
 		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-			<h1>Right Margin</h1>
+			<h1></h1>
 		</div>
 	</div>
 
 </body>
+
 
 <script data-main="js/main" src="js/libs/require/require.js"></script>
 
